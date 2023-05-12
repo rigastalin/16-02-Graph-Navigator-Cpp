@@ -5,17 +5,14 @@ Implementation of the Simple Navigator project.
 
 
 ![SimpleNavigator](misc/images/navigator_wolf.png)
-
+## Chapter I
 ## Introduction
 
-In this project you will implement several basic algorithms on graphs. Graphs are one of the basic data structures in programming that are used everywhere. Graphs can be used, for example, to interpret road maps, electrical circuits, geographic maps, for communication between people in social networks, and many other things.  
+In this project I implemented several basic algorithms on graphs. Graphs are one of the basic data structures in programming that are used everywhere. Graphs can be used, for example, to interpret road maps, electrical circuits, geographic maps, for communication between people in social networks, and many other things.  
 
 
 ## Chapter II
-
 ## Information
-
-### Main terms
 
 A **Graph** has a finite set of vertices, and a set of edges. Each edge has two points from the set of graph vertices that form the edge points.
 
