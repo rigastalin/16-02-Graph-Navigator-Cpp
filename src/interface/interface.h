@@ -3,14 +3,20 @@
 
 #include <iostream>
 #include <string>
+#include <sstream>
+#include <thread>
+#include <unistd.h>
 
 class Interface {
  public:
     Interface();
     ~Interface();
 
+    int Intro();
     int ShowMenu();
     void Menu();
+    void BackToMenu();
+
     void LoadFile();
     void BreadFirstSearch();
     void DepthFirstSearch();
@@ -20,6 +26,7 @@ class Interface {
     void SalesmanProblem();
 
 private:
+    int backInMenu = -1;
     int userInput;
 };
 
