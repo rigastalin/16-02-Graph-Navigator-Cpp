@@ -41,6 +41,25 @@ namespace s21 {
         std::cout << "\nExport is finished";
     }
 
+    std::vector<int> Graph::getNeighbors(int vertex) const {
+        if (vertex < 0 || vertex >= m_dimension) {
+            throw std::out_of_range("Vertex index out of range");
+        }
+
+        std::vector<int> neighboors;
+        for (int i = 0; i < m_dimension; ++i) {
+            if (m_matrix[vertex][i] != 0) {
+                neighboors.push_back(i);
+            }
+        }
+        return neighboors;
+    }
+
+    int Graph::getNumVertices() const {
+        return m_dimension;
+    }
+
+
     void Graph::printGraph() const {
         std::cout << "\nPRINTING:  \n";
         for (int i = 0; i  < m_dimension; i++) {

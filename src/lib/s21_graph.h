@@ -13,10 +13,14 @@ namespace s21 {
     class Graph {
     public:
         Graph() = default;
+        ~Graph() = default;
         explicit Graph(const std::vector<std::vector<int> >& matrix);
 
         void loadGraphFromFile(std::string filename);
         void exportGraphToDot(std::string filename) const;
+
+        std::vector<int> getNeighbors(int vertex) const;
+        int getNumVertices() const;
 
         void printGraph() const;
 

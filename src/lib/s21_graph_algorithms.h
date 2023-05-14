@@ -4,16 +4,21 @@
 #pragma once
 
 #include "s21_graph.h"
-#include "../containers/s21_queue.h"
-#include "../containers/s21_stack.h"
+//#include "../containers/s21_queue.h"
+//#include "../containers/s21_stack.h"
+#include <stack>
+#include <queue>
 #include <vector>
+#include <algorithm>
 
 namespace s21 {
-    class GraphAlgorithmss {
+    class GraphAlgorithms {
     public:
-        static std::vector<int> DepthFirstSearch(Graph &graph, int start_vertex;
-        static std::vector<int> BreadthFirstSearch(Graph &graph, int start_vertex);
+        GraphAlgorithms()  = default;
+        ~GraphAlgorithms()  = default;
 
+        std::vector<int> DepthFirstSearch(Graph &graph, int start_vertex);
+        std::vector<int> BreadthFirstSearch(Graph &graph, int start_vertex);
     };
 
 }  // namespace s21

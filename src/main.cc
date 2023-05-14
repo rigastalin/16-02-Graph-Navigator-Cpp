@@ -1,5 +1,6 @@
 //#include "interface/interface.h"
 #include "lib/s21_graph.h"
+#include "lib/s21_graph_algorithms.h"
 
 int main() {
 //  Interface interface;
@@ -7,8 +8,15 @@ int main() {
 //  interface.Menu();
     s21::Graph graph;
     graph.loadGraphFromFile("/opt/goinfre/cflossie/A2_SimpleNavigator_v1.0-0/src/dataset/graph1.txt");
-    graph.printGraph();
+    s21::GraphAlgorithms graphAlgorithms;
 
-    graph.exportGraphToDot("dataset/graph.dot");
+    int startVertex = 0;
+    std::vector<int> dfsResult = graphAlgorithms.DepthFirstSearch(graph, startVertex);
+    std::cout << "\nDepth-First Search: \n";
+    for (auto vertex : dfsResult) {
+        std::cout << vertex << " ";
+    }
+    std::cout << std::endl;
+
     return 0;
 }

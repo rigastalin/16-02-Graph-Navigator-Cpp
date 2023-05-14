@@ -13,12 +13,15 @@ endif
 all: clean build
 
 s21_graph.a:
+	$(CC) -c lib/s21_graph.cpp -o lib/s21_graph.o
+	ar rcs lib/s21_graph.a lib/s21_graph.o
 
 s21_graph_algorithms.a:
+	$(CC) -c lib/s21_graph_algorithms.cpp -o lib/s21_graph_algorithms.o
+	ar rcs lib/s21_graph_algorithms.a lib/s21_graph_algorithms.o
 
-
-build:
-	$(CC) $(STD) main.cc interface/interface.cpp -o main
+build: s21_graph.a s21_graph_algorithms.a
+	$(CC) $(STD) main.cc  -o main main.cc lib/s21_graph.a lib/s21_graph_algorithms.a
 	./main
 
 test:
@@ -38,6 +41,7 @@ check:
 
 clean:
 	@rm -rf *.o *.a *.dSYM .out
+	@rm -rf lib/*.o lib/*.a
 	@rm -rf main
 
 .PHONY: all install uninstall clean tests gcov_report clang leaks check
