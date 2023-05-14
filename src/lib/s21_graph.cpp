@@ -10,24 +10,14 @@ namespace s21 {
             throw std::invalid_argument("File not found");
         }
 
-        int matrix_size;
-        loadfile >> matrix_size;
-        m_matrix.resize(matrix_size);
-        for (int i = 0; i < matrix_size; ++i) {
-            m_matrix[i].resize((matrix_size));
-            for (int j = 0; j < matrix_size; ++j) {
+        loadfile >> m_dimension;
+        m_matrix.resize(m_dimension);
+        for (int i = 0; i < m_dimension; ++i) {
+            m_matrix[i].resize((m_dimension));
+            for (int j = 0; j < m_dimension; ++j) {
                 loadfile >> m_matrix[i][j];
             }
         }
-
-        std::cout << "\nPRINTING: \n";
-        for (int i = 0; i  < m_dimension; i++) {
-            for (int j = 0; j < m_dimension; j++) {
-                std::cout << m_matrix[i][j] << " ";
-            }
-            std::cout << std::endl;
-        }
-
 
         std::cout << "\nLoading complete!";
     }
@@ -38,11 +28,11 @@ namespace s21 {
             throw std::invalid_argument("Can\'t open file");
         }
 
-        outfile << "digraph graphname {\n";
+        outfile << "digraph G {\n";
         for (int i = 0; i < m_dimension; ++i) {
             for (int j = 0; j < m_dimension; ++j) {
                 if (m_matrix[i][j] != 0) {
-                    outfile << " " << i << " -> " << j << " [label=\"" << m_matrix[i][j] << "\"];\n";
+                    outfile << " " << i << " -- " << j << " [weight=\"" << m_matrix[i][j] << "\"];\n";
                 }
             }
         }
@@ -52,7 +42,7 @@ namespace s21 {
     }
 
     void Graph::printGraph() const {
-        std::cout << "\nAdjacency matrix: \n";
+        std::cout << "\nPRINTING:  \n";
         for (int i = 0; i  < m_dimension; i++) {
             for (int j = 0; j < m_dimension; j++) {
                 std::cout << m_matrix[i][j] << " ";

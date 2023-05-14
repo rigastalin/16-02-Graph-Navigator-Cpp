@@ -1,5 +1,5 @@
-#ifndef SRC_LIB_H_
-#define SRC_LIB_H_
+#ifndef SRC_LIB_S21_GRAPH_H_
+#define SRC_LIB_S21_GRAPH_H_
 
 #pragma once
 
@@ -26,4 +26,4 @@ namespace s21 {
     };
 
 }  // namespace s21
-#endif  // SRC_LIB_H_
+#endif  // SRC_LIB_S21_GRAPH_H_

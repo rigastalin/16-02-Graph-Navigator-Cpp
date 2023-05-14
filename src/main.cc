@@ -6,8 +6,9 @@ int main() {
 //  interface.Intro();
 //  interface.Menu();
     s21::Graph graph;
-    graph.loadGraphFromFile("dataset/graph1.txt");
+    graph.loadGraphFromFile("/opt/goinfre/cflossie/A2_SimpleNavigator_v1.0-0/src/dataset/graph1.txt");
     graph.printGraph();
-//    graph.exportGraphToDot("graph.dot");
+
+    graph.exportGraphToDot("dataset/graph.dot");
     return 0;
 }
