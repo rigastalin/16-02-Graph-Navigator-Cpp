@@ -134,13 +134,22 @@ void Interface::Menu() {
 }
 
 void Interface::BackToMenu() {
-  std::cout << " " << std::endl;
-  std::cout << "╔══════════════════════════════════════════════════════╗"
-            << std::endl;
-  std::cout << "║ ЧТОБЫ ВЕРНУТЬСЯ В МЕНЮ, НАЖМИ \"1\" ИЛИ \"0\" ДЛЯ ВЫХОДА ║"
-            << std::endl;
-  std::cout << "╚══════════════════════════════════════════════════════╝"
-            << std::endl;
+    std::cout << " " << std::endl;
+    std::cout << " " << std::endl;
+    std::cout << " " << std::endl;
+    std::cout << "╔════════════════════════════════════════════════════════════════╗\n"
+              << "║                                                                ║\n"
+              << "╚════════════════════════════════════════════════════════════════╝\n";
+
+    std::string text = "ЧТОБЫ ВЕРНУТЬСЯ В МЕНЮ, НАЖМИ \"1\" ИЛИ \"0\" ДЛЯ ВЫХОДА";
+    int delay = 20;
+
+    // Позиционируем курсор внутри рамки
+    std::cout << std::endl;
+    std::cout << "\033[7;8H";
+    printDelayed(text, delay);
+    std::cout << std::endl;
+    std::cout << std::endl;
 
   while (true) {
     std::string input;
@@ -168,28 +177,42 @@ void Interface::BackToMenu() {
   } else if (backInMenu == 0) {
     exit(0);
   }
+
+}
+
+void Interface::printDelayed(const std::string& text, int delay) {
+    for (char c : text) {
+        std::cout << c << std::flush;
+        std::this_thread::sleep_for(std::chrono::milliseconds(delay));
+    }
 }
 
 void Interface::LoadFile() {
-    graph_.loadGraphFromFile("/opt/goinfre/cflossie/A2_SimpleNavigator_v1.0-0/src/dataset/graph2.txt");
+    system("clear");
+    graph_.loadGraphFromFile("dataset/graph1.txt");
     BackToMenu();
 }
 
 void Interface::BreadFirstSearch() {
+    system("clear");
     int startVertex = 0;
     std::vector<int> dfsResult = graphAlgorithms_.DepthFirstSearch(graph_, startVertex);
-    std::cout << "\nDEPTH-FIRST SEARCH: \n";
+    std::string text = "DEPTH-FIRST SEARCH: \n";
+    printDelayed(text, 30);
     for (auto vertex : dfsResult) {
-        std::cout << vertex << " ";
+        std::string str = std::to_string(vertex);
+        printDelayed(str, 50);
+        std::cout << " ";
     }
     std::cout << std::endl;
     BackToMenu();
 }
 
 void Interface::DepthFirstSearch() {
+    system("clear");
     int startVertex = 0;
     std::vector<int> bfsResult = graphAlgorithms_.BreadthFirstSearch(graph_, startVertex);
-    std::cout << "\nBREADTH-FIRST SEARCH: \n";
+    std::cout << "BREADTH-FIRST SEARCH: \n";
     for (auto vertext : bfsResult) {
         std::cout << vertext << " ";
     }
@@ -198,15 +221,20 @@ void Interface::DepthFirstSearch() {
 }
 
 void Interface::ShortestPathTwoPeaks() {
+    system("clear");
+    int vertex1, vertex2;
+    std::cout << "INPUT NUMBERS OF TWO VERTICES: " << std::endl;
+    std::cin >> vertex1 >> vertex2;
+    int gspbvRes = graphAlgorithms_.GetShortestPathBetweenVertices(graph_, vertex1, vertex2);
     std::cout << std::endl;
-    int gspbvres = graphAlgorithms_.GetShortestPathBetweenVertices(graph_, 2, 3);
-    std::cout << gspbvres << std::endl;
+    std::cout << "WEIGHT: " << gspbvRes;
     BackToMenu();
 }
 
 void Interface::ShortestPathAllPeaks() {
+    system("clear");
     auto res = graphAlgorithms_.GetShortestPathsBetweenAllVertices(graph_);
-    std::cout << "Shortest paths between all vertices:" << std::endl;
+    std::cout << "SHORTEST PATHS BETWEEN ALL VERTICES: " << std::endl;
     for (int i = 0; i < graph_.getNumVertices(); i++) {
         for (int j = 0; j < graph_.getNumVertices(); j++) {
             std::cout << res[i][j] << " ";
@@ -217,8 +245,20 @@ void Interface::ShortestPathAllPeaks() {
 }
 
 void Interface::MinSpanningTree() {
-  std::cout << "FUCK YOU 6" << std::endl;
-  BackToMenu();
+    system("clear");
+    std::vector<std::vector<int> > mst = graphAlgorithms_.GetLeastSpanningTree(graph_);
+    int sum = 0;
+    for (const auto& row : mst) {
+        for (int weight: row) {
+            std::cout << weight << " ";
+            sum += weight;
+        }
+        std::cout << std::endl;
+    }
+
+    std::cout << std::endl;
+    std::cout << "MINIMAL WEIGHT: " << sum << std::endl;
+    BackToMenu();
 }
 
 void Interface::SalesmanProblem() {

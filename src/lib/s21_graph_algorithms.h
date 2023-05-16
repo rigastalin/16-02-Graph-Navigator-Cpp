@@ -25,8 +25,9 @@ namespace s21 {
         std::vector<int> BreadthFirstSearch(Graph &graph, int start_vertex);
 
         int GetShortestPathBetweenVertices(Graph &graph, int vertex1, int vertex2);
-        std::vector<std::vector<int>> GetShortestPathsBetweenAllVertices(Graph &graph);
+        std::vector<std::vector<int> > GetShortestPathsBetweenAllVertices(Graph &graph);
 
+        std::vector<std::vector<int> > GetLeastSpanningTree(Graph &graph);
     };
 
 }  // namespace s21

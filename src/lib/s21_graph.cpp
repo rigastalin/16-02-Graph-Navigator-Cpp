@@ -12,14 +12,22 @@ namespace s21 {
 
         loadfile >> m_dimension;
         m_matrix.resize(m_dimension);
-        for (int i = 0; i < m_dimension; ++i) {
+        for (int i = 0; i < m_dimension; i++) {
             m_matrix[i].resize((m_dimension));
-            for (int j = 0; j < m_dimension; ++j) {
+            for (int j = 0; j < m_dimension; j++) {
                 loadfile >> m_matrix[i][j];
             }
         }
 
-        std::cout << "\nLoading complete!";
+        // ВЫНЕСТИ В UI И В ОТДЕЛЬНУЮ ФУНКЦИЮ
+        int delay = 30;
+        std::string textLoading = "\nLOADING SUCCESSFULLY COMPLETE!";
+        for (std::size_t i = 0; i < textLoading.length(); i++) {
+            std::cout << textLoading[i] << std::flush;
+            std::this_thread::sleep_for(std::chrono::milliseconds(delay));
+        }
+        std::cout << std::endl;
+
     }
 
     void Graph::exportGraphToDot(std::string filename) const {
@@ -74,8 +82,8 @@ namespace s21 {
 
     void Graph::printGraph() const {
         std::cout << "\nPRINTING:  \n";
-        for (int i = 0; i  < m_dimension; i++) {
-            for (int j = 0; j < m_dimension; j++) {
+        for (int i = 1; i  < m_dimension; i++) {
+            for (int j = 1; j < m_dimension; j++) {
                 std::cout << m_matrix[i][j] << " ";
             }
             std::cout << std::endl;

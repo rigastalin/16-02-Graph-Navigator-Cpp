@@ -20,6 +20,8 @@ class Interface {
   void Menu();
   void BackToMenu();
 
+  void printDelayed(const std::string& text, int delay);
+
   void LoadFile();
   void BreadFirstSearch();
   void DepthFirstSearch();

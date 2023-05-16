@@ -8,6 +8,7 @@
 #include <stdexcept>
 #include <string>
 #include <vector>
+#include <thread>
 
 
 namespace s21 {
@@ -24,6 +25,7 @@ namespace s21 {
         int getNumVertices() const;
 
         void printGraph() const;
+
 
         std::vector<int>  getAdjacent(int current_index);
 

@@ -10,7 +10,7 @@ namespace s21 {
             stack_.pop();
             if (std::find(visited.begin(), visited.end(), vertex) == visited.end()) {
                 visited.push_back(vertex);
-                for (auto neighbor: graph.getNeighbors(vertex)) {
+                for (auto neighbor : graph.getNeighbors(vertex)) {
                     stack_.push(neighbor);
                 }
             }
@@ -81,11 +81,10 @@ namespace s21 {
         }
         std::reverse(path.begin(), path.end());
 
-        std::cout << "Shortest path from " << vertex1 << " to " << vertex2 << ": ";
+        std::cout << "SHORTEST PATH FROM " << vertex1 << " TO " << vertex2 << ": ";
         for (int vertex : path) {
             std::cout << vertex << " ";
         }
-        std::cout << std::endl;
 
         return distance[vertex2];
     }
@@ -114,6 +113,49 @@ namespace s21 {
         }
 
         return distance;
+    }
+
+    std::vector<std::vector<int> > GraphAlgorithms::GetLeastSpanningTree(Graph &graph) {
+        int num_vertices = graph.getNumVertices();
+        std::vector<std::vector<int> > mst(num_vertices, std::vector<int>(num_vertices, 0));
+        std::vector<bool> visited(num_vertices, false);
+        std::vector<int> weights(num_vertices, MAX);
+
+        int start_index = 0;
+        weights[start_index] = 0;
+
+        std::priority_queue<std::pair<int, int>, std::vector<std::pair<int, int> >, std::greater<std::pair<int,int> > > priorityQueue;
+        priorityQueue.push(std::make_pair(0, start_index));
+
+        while (!priorityQueue.empty()) {
+            int current_index = priorityQueue.top().second;
+            priorityQueue.pop();
+
+            visited[current_index] = true;
+
+            for (int neighbor_vertex = 0; neighbor_vertex < num_vertices; ++neighbor_vertex) {
+                int weight = graph[current_index][neighbor_vertex];
+
+                if (!visited[neighbor_vertex] && weight < weights[neighbor_vertex]) {
+                    weights[neighbor_vertex] = weight;
+                    priorityQueue.push(std::make_pair(weight, neighbor_vertex));
+                }
+            }
+        }
+
+        for (int vertex = 0; vertex < num_vertices; ++vertex) {
+            if (vertex == start_index) {
+                continue;
+            }
+
+            int parent_vertex = vertex;
+            int weight = weights[vertex];
+
+            mst[parent_vertex][vertex] = weight;
+            mst[vertex][parent_vertex] = weight;
+        }
+
+        return mst;
     }
 
 }  // namespace s21
