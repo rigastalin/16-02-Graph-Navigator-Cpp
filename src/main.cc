@@ -11,10 +11,17 @@ int main() {
     s21::GraphAlgorithms graphAlgorithms;
 
     int startVertex = 0;
-    std::vector<int> dfsResult = graphAlgorithms.DepthFirstSearch(graph, startVertex);
-    std::cout << "\nDepth-First Search: \n";
-    for (auto vertex : dfsResult) {
-        std::cout << vertex << " ";
+//    std::vector<int> dfsResult = graphAlgorithms.DepthFirstSearch(graph, startVertex);
+//    std::cout << "\nDepth-First Search: \n";
+//    for (auto vertex : dfsResult) {
+//        std::cout << vertex << " ";
+//    }
+//    std::cout << std::endl;
+
+    std::vector<int> bfsResult = graphAlgorithms.BreadthFirstSearch(graph, startVertex);
+    std::cout << "\nBreadth-First Search: \n";
+    for (auto vertext : bfsResult) {
+        std::cout << vertext << " ";
     }
     std::cout << std::endl;
 

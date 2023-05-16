@@ -24,6 +24,8 @@ namespace s21 {
 
         void printGraph() const;
 
+        std::vector<int>  getAdjacent(int current_index);
+
     private:
         std::vector<std::vector<int> > m_matrix;
         int m_dimension;

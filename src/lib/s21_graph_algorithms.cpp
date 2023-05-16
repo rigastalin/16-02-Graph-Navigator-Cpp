@@ -20,26 +20,29 @@ namespace s21 {
     }
 
     std::vector<int> GraphAlgorithms::BreadthFirstSearch(s21::Graph &graph, int start_vertex) {
-        std::vector<int> visited;
+        std::vector<bool> visited;
         visited.resize(graph.getNumVertices() + 1, false);
 
+        std::vector<int> traversal_order;
         std::queue<int> queue;
+
         queue.push(start_vertex);
         visited[start_vertex] = true;
 
         while (!queue.empty()) {
             int current_vertex = queue.front();
             queue.pop();
-            visited.push_back(current_vertex);
+            traversal_order.push_back(current_vertex);
 
-            for (int i = 0; i < graph.getNumVertices(); ++i) {
-                if (graph[current_vertex][i] && !visited[i]) {
-                    queue.push(i);
-                    visited[i] = true;
+            for (int adj_vertex : graph.getAdjacent(current_vertex)) {
+                if (!visited[adj_vertex]) {
+                    queue.push(adj_vertex);
+                    visited[adj_vertex] = true;
                 }
             }
         }
-        return visited;
+        return traversal_order;
     }
+
 
 }  // namespace s21

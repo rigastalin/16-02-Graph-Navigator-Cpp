@@ -59,6 +59,18 @@ namespace s21 {
         return m_dimension;
     }
 
+    std::vector<int> Graph::getAdjacent(int current_index) {
+        std::vector<int> adj_vertices;
+
+        if (current_index >= 0 && current_index < m_dimension) {
+            for (int i = 0; i < m_dimension; ++i) {
+                if (m_matrix[current_index][i] != 0) {
+                    adj_vertices.push_back(i);
+                }
+            }
+        }
+        return adj_vertices;
+    }
 
     void Graph::printGraph() const {
         std::cout << "\nPRINTING:  \n";
@@ -69,5 +81,6 @@ namespace s21 {
             std::cout << std::endl;
         }
     }
+
 
 }  // namespace s21
