@@ -2,11 +2,13 @@
 #define SRC_INTERFACE_H_
 
 #include <unistd.h>
-
 #include <iostream>
 #include <sstream>
 #include <string>
 #include <thread>
+
+#include "../lib/s21_graph.h"
+#include "../lib/s21_graph_algorithms.h"
 
 class Interface {
  public:
@@ -29,6 +31,8 @@ class Interface {
  private:
   int backInMenu = -1;
   int userInput;
+  s21::Graph graph_;
+  s21::GraphAlgorithms graphAlgorithms_;
 };
 
 #endif  //  SRC_INTERFACE_H_

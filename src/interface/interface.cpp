@@ -1,8 +1,8 @@
 #include "interface.h"
 
-Interface::Interface(){};
+Interface::Interface(){}
 
-Interface::~Interface(){};
+Interface::~Interface(){}
 
 int Interface::Intro() {
   system("clear");
@@ -19,7 +19,7 @@ int Interface::Intro() {
   std::cout << "" << std::endl;
 
   int delay = 30;
-  for (int i = 0; i < text.length(); i++) {
+  for (std::size_t i = 0; i < text.length(); i++) {
     std::cout << text[i] << std::flush;
     std::this_thread::sleep_for(std::chrono::milliseconds(delay));
   }
@@ -54,7 +54,7 @@ int Interface::Intro() {
   usleep(1000000);
 
   std::string loadStr = "ЗАГРУЗКА";
-  for (int i = 0; i < loadStr.length(); i++) {
+  for (std::size_t i = 0; i < loadStr.length(); i++) {
     std::cout << loadStr[i] << std::flush;
     std::this_thread::sleep_for(std::chrono::milliseconds(delay));
   }
@@ -171,29 +171,49 @@ void Interface::BackToMenu() {
 }
 
 void Interface::LoadFile() {
-  std::cout << "FUCK YOU 1" << std::endl;
-
-  BackToMenu();
+    graph_.loadGraphFromFile("/opt/goinfre/cflossie/A2_SimpleNavigator_v1.0-0/src/dataset/graph2.txt");
+    BackToMenu();
 }
 
 void Interface::BreadFirstSearch() {
-  std::cout << "FUCK YOU 2" << std::endl;
-  BackToMenu();
+    int startVertex = 0;
+    std::vector<int> dfsResult = graphAlgorithms_.DepthFirstSearch(graph_, startVertex);
+    std::cout << "\nDEPTH-FIRST SEARCH: \n";
+    for (auto vertex : dfsResult) {
+        std::cout << vertex << " ";
+    }
+    std::cout << std::endl;
+    BackToMenu();
 }
 
 void Interface::DepthFirstSearch() {
-  std::cout << "FUCK YOU 3" << std::endl;
-  BackToMenu();
+    int startVertex = 0;
+    std::vector<int> bfsResult = graphAlgorithms_.BreadthFirstSearch(graph_, startVertex);
+    std::cout << "\nBREADTH-FIRST SEARCH: \n";
+    for (auto vertext : bfsResult) {
+        std::cout << vertext << " ";
+    }
+    std::cout << std::endl;
+    BackToMenu();
 }
 
 void Interface::ShortestPathTwoPeaks() {
-  std::cout << "FUCK YOU 4" << std::endl;
-  BackToMenu();
+    std::cout << std::endl;
+    int gspbvres = graphAlgorithms_.GetShortestPathBetweenVertices(graph_, 2, 3);
+    std::cout << gspbvres << std::endl;
+    BackToMenu();
 }
 
 void Interface::ShortestPathAllPeaks() {
-  std::cout << "FUCK YOU 5" << std::endl;
-  BackToMenu();
+    auto res = graphAlgorithms_.GetShortestPathsBetweenAllVertices(graph_);
+    std::cout << "Shortest paths between all vertices:" << std::endl;
+    for (int i = 0; i < graph_.getNumVertices(); i++) {
+        for (int j = 0; j < graph_.getNumVertices(); j++) {
+            std::cout << res[i][j] << " ";
+        }
+        std::cout << std::endl;
+    }
+    BackToMenu();
 }
 
 void Interface::MinSpanningTree() {

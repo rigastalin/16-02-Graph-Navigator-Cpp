@@ -9,6 +9,7 @@
 #include <string>
 #include <vector>
 
+
 namespace s21 {
     class Graph {
     public:
@@ -25,6 +26,13 @@ namespace s21 {
         void printGraph() const;
 
         std::vector<int>  getAdjacent(int current_index);
+
+        const std::vector<int>& operator[](int vertex) const {
+            return m_matrix[vertex];
+        }
+        std::vector<int>& operator[](int vertex) {
+            return m_matrix[vertex];
+        }
 
     private:
         std::vector<std::vector<int> > m_matrix;
