@@ -14,8 +14,19 @@
 
 const int MAX = std::numeric_limits<int>::max();
 const int NO_PARENT = -1;
+//const int NUM_ANTS = 10;
+const double ALPHA = 1.0;
+const double BETA = 2.0;
+const double EVAPORATION_RATE = 0.5;
+const int NUM_ITERATIONS = 100;
 
 namespace s21 {
+
+    struct TsmResult {
+        std::vector<int> vertices;
+        double distance;
+    };
+
     class GraphAlgorithms {
     public:
         GraphAlgorithms()  = default;
@@ -28,6 +39,8 @@ namespace s21 {
         std::vector<std::vector<int> > GetShortestPathsBetweenAllVertices(Graph &graph);
 
         std::vector<std::vector<int> > GetLeastSpanningTree(Graph &graph);
+
+        TsmResult SolveTravelingSalesmanProblem(Graph &graph);
     };
 
 }  // namespace s21

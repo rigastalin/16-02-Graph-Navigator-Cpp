@@ -12,9 +12,9 @@ namespace s21 {
 
         loadfile >> m_dimension;
         m_matrix.resize(m_dimension);
-        for (int i = 0; i < m_dimension; i++) {
+        for (int i = 0; i < m_dimension; ++i) {
             m_matrix[i].resize((m_dimension));
-            for (int j = 0; j < m_dimension; j++) {
+            for (int j = 0; j < m_dimension; ++j) {
                 loadfile >> m_matrix[i][j];
             }
         }
@@ -54,13 +54,13 @@ namespace s21 {
             throw std::out_of_range("Vertex index out of range");
         }
 
-        std::vector<int> neighboors;
+        std::vector<int> neighbors;
         for (int i = 0; i < m_dimension; ++i) {
             if (m_matrix[vertex][i] != 0) {
-                neighboors.push_back(i);
+                neighbors.push_back(i);
             }
         }
-        return neighboors;
+        return neighbors;
     }
 
     int Graph::getNumVertices() const {

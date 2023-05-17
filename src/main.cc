@@ -3,21 +3,21 @@
 #include "lib/s21_graph_algorithms.h"
 
 int main() {
-  Interface interface;
+//  Interface interface;
 //  interface.Intro();
-  interface.Menu();
+//  interface.Menu();
 
-//    s21::Graph graph;
-//    graph.loadGraphFromFile("/opt/goinfre/cflossie/A2_SimpleNavigator_v1.0-0/src/dataset/graph2.txt");
-//    s21::GraphAlgorithms graphAlgorithms;
+    s21::Graph graph;
+    graph.loadGraphFromFile("/opt/goinfre/cflossie/A2_SimpleNavigator_v1.0-0/src/dataset/graph1.txt");
+    s21::GraphAlgorithms graphAlgorithms;
 
-//    int startVertex = 2;
-//    std::vector<int> dfsResult = graphAlgorithms.DepthFirstSearch(graph, startVertex);
-//    std::cout << "\nDepth-First Search: \n";
-//    for (auto vertex : dfsResult) {
-//        std::cout << vertex << " ";
-//    }
-//    std::cout << std::endl;
+    int startVertex = 0;
+    std::vector<int> dfsResult = graphAlgorithms.DepthFirstSearch(graph, startVertex);
+    std::cout << "\nDepth-First Search: \n";
+    for (auto vertex : dfsResult) {
+        std::cout << vertex << " ";
+    }
+    std::cout << std::endl;
 
 //    std::vector<int> bfsResult = graphAlgorithms.BreadthFirstSearch(graph, startVertex);
 //    std::cout << "\nBreadth-First Search: \n";

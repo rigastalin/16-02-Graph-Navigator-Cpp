@@ -23,12 +23,10 @@ namespace s21 {
 
         std::vector<int> getNeighbors(int vertex) const;
         int getNumVertices() const;
-
         void printGraph() const;
 
 
         std::vector<int>  getAdjacent(int current_index);
-
         const std::vector<int>& operator[](int vertex) const {
             return m_matrix[vertex];
         }

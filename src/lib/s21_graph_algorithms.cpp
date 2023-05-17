@@ -6,12 +6,18 @@ namespace s21 {
         s21::stack<int> stack_;
         stack_.push(start_vertex);
         while (!stack_.empty()) {
-            int vertex = stack_.top();
+            int current_vertex = stack_.top();
             stack_.pop();
-            if (std::find(visited.begin(), visited.end(), vertex) == visited.end()) {
-                visited.push_back(vertex);
-                for (auto neighbor : graph.getNeighbors(vertex)) {
-                    stack_.push(neighbor);
+            if (std::find(visited.begin(), visited.end(), current_vertex) == visited.end()) {
+                visited.push_back(current_vertex);
+
+                std::vector<int> neighbors = graph.getNeighbors(current_vertex);
+
+                for (auto it = neighbors.rbegin(); it != neighbors.rend(); ++it) {
+                    int neighbor = *it;
+                    if (std::find(visited.begin(), visited.end(), neighbor) == visited.end()) {
+                        stack_.push(neighbor);
+                    }
                 }
             }
         }
@@ -23,20 +29,19 @@ namespace s21 {
         visited.resize(graph.getNumVertices() + 1, false);
 
         std::vector<int> traversal_order;
-        s21::queue<int> queue;
-//        std::queue<int> queue;
+        s21::queue<int> queue_;
 
-        queue.push(start_vertex);
+        queue_.push(start_vertex);
         visited[start_vertex] = true;
 
-        while (!queue.empty()) {
-            int current_vertex = queue.front();
-            queue.pop();
+        while (!queue_.empty()) {
+            int current_vertex = queue_.front();
+            queue_.pop();
             traversal_order.push_back(current_vertex);
 
             for (int adj_vertex : graph.getAdjacent(current_vertex)) {
                 if (!visited[adj_vertex]) {
-                    queue.push(adj_vertex);
+                    queue_.push(adj_vertex);
                     visited[adj_vertex] = true;
                 }
             }
@@ -156,6 +161,45 @@ namespace s21 {
         }
 
         return mst;
+    }
+
+
+    // ================>  TRAVELING SALES PROBLEM (ANT WAY)  <================
+    TsmResult SolveTravelingSalesmanProblem(Graph &graph) {
+        int num_vertices = graph.getNumVertices();
+        int num_ants = num_vertices;
+        std::vector<std::vector<double> > pheromoneMatrix(num_vertices, std::vector<double>(num_vertices, 1.0));
+
+        std::vector<std::vector<int> > antPath(num_ants, std::vector<int>(num_vertices));
+
+        // Цикл по итерациям
+        for (int iteration = 0; iteration < NUM_ITERATIONS; ++iteration) {
+            // Перемещение муравьев
+            for (int ant = 0; ant < num_ants; ++ant) {
+                // Начальная вершина
+                int current_vertex = ant % num_vertices;
+                antPath[ant][0] = current_vertex;
+
+                // Посещение остальных вершин
+                for (int i = 1; i < num_vertices; ++i) {
+                    std::vector<int> available_vertices;
+                    for (int vertex = 0; vertex < num_vertices; ++vertex) {
+                        if (std::find(antPath[ant].begin(), antPath[ant].begin() + 1, vertex) == antPath[ant].begin() + 1) {
+                            available_vertices.push_back(vertex);
+                        }
+                    }
+
+                    // Выбор следующей вершины на основе вероятностей
+                    double sumProbabilities = 0.0;
+                    std::vector<double> probabilities(available_vertices.size());
+                    for (int j = 0; j < available_vertices.size(); ++j) {
+                        double pheromone = pheromoneMatrix[current_vertex][available_vertices[j]];
+
+                    }
+
+                }
+            }
+        }
     }
 
 }  // namespace s21
