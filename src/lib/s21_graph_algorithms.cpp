@@ -165,39 +165,130 @@ namespace s21 {
 
 
     // ================>  TRAVELING SALES PROBLEM (ANT WAY)  <================
-    TsmResult SolveTravelingSalesmanProblem(Graph &graph) {
+    TsmResult GraphAlgorithms::SolveTravelingSalesmanProblem(Graph &graph) {
         int num_vertices = graph.getNumVertices();
         int num_ants = num_vertices;
         std::vector<std::vector<double> > pheromoneMatrix(num_vertices, std::vector<double>(num_vertices, 1.0));
 
         std::vector<std::vector<int> > antPath(num_ants, std::vector<int>(num_vertices));
 
+        std::vector<int> bestRoute;
+        double bestDistance = MAX_D;
         // Цикл по итерациям
         for (int iteration = 0; iteration < NUM_ITERATIONS; ++iteration) {
             // Перемещение муравьев
-            for (int ant = 0; ant < num_ants; ++ant) {
-                // Начальная вершина
-                int current_vertex = ant % num_vertices;
-                antPath[ant][0] = current_vertex;
+            AntMovement(graph, pheromoneMatrix, antPath);
+            UpdatePheromone(graph, pheromoneMatrix, antPath);
+            UpdateBestRoute(graph, antPath, bestRoute, bestDistance);
+        }
 
-                // Посещение остальных вершин
-                for (int i = 1; i < num_vertices; ++i) {
-                    std::vector<int> available_vertices;
-                    for (int vertex = 0; vertex < num_vertices; ++vertex) {
-                        if (std::find(antPath[ant].begin(), antPath[ant].begin() + 1, vertex) == antPath[ant].begin() + 1) {
-                            available_vertices.push_back(vertex);
-                        }
+            TsmResult result;
+            result.distance = bestDistance;
+            result.vertices = bestRoute;
+            return result;
+    }
+
+    void GraphAlgorithms::AntMovement(s21::Graph &graph,
+                                      const std::vector<std::vector<double>> &pheromoneMatrix,
+                                      std::vector<std::vector<int>> &antPath) {
+        int num_vertices = graph.getNumVertices();
+        int num_ants = num_vertices;
+
+        for (int ant = 0; ant < num_ants; ++ant) {
+            // Начальная вершина
+            int current_vertex = 0;
+            if (ant != 0) {
+                current_vertex = ant % num_vertices;
+            }
+            antPath[ant][0] = current_vertex;
+
+            std::vector<bool> visited(num_vertices, false);
+            visited[current_vertex] = true;
+
+            // Посещение остальных вершин
+            for (int i = 1; i < num_vertices; ++i) {
+                std::vector<int> available_vertices;
+                for (int vertex = 0; vertex < num_vertices; ++vertex) {
+                    if (!visited[vertex]) {
+                        available_vertices.push_back(vertex);
                     }
-
-                    // Выбор следующей вершины на основе вероятностей
-                    double sumProbabilities = 0.0;
-                    std::vector<double> probabilities(available_vertices.size());
-                    for (int j = 0; j < available_vertices.size(); ++j) {
-                        double pheromone = pheromoneMatrix[current_vertex][available_vertices[j]];
-
-                    }
-
                 }
+
+                // Выбор следующей вершины на основе вероятностей
+                double sumProbabilities = 0.0;
+                std::vector<double> probabilities(available_vertices.size());
+                for (size_t j = 0; j < available_vertices.size(); ++j) {
+                    double pheromone = pheromoneMatrix[current_vertex][available_vertices[j]];
+                    double distance = graph.getDistance(current_vertex, available_vertices[j]);
+                    probabilities[j] = std::pow(pheromone, ALPHA) * std::pow(1.0 / distance, BETA);
+                    sumProbabilities += probabilities[j];
+                }
+
+                for (size_t j = 0; j < available_vertices.size(); ++j) {
+                    probabilities[j] /= sumProbabilities;
+                }
+
+                // Выбор следующей вершины
+                double randomValue = static_cast<double>(rand()) / RAND_MAX;
+                double cumulativeProbability = 0.0;
+                int next_vertex = -1;
+                for (size_t j = 0; j < available_vertices.size(); ++j) {
+                    cumulativeProbability += probabilities[j];
+                    if (randomValue <= cumulativeProbability) {
+                        next_vertex = available_vertices[j];
+                        break;
+                    }
+                }
+
+                // Обновление текущей вершины
+                current_vertex = next_vertex;
+                antPath[ant][i] = current_vertex;
+                visited[current_vertex];
+            }
+        }
+    }
+
+    void GraphAlgorithms::UpdatePheromone(s21::Graph &graph, std::vector<std::vector<double>> &pheromoneMatrix,
+                                          const std::vector<std::vector<int>> &antPaths) {
+        int num_vertices = graph.getNumVertices();
+        // Обновление феромона
+        for (int i = 0; i < num_vertices; ++i) {
+            for (int j = 0; j < num_vertices; ++j) {
+                if (i != j) {
+                    pheromoneMatrix[i][j] *= EVAPORATION_RATE;
+                }
+            }
+        }
+
+        for (const auto &antPath : antPaths) {
+            double totalDistance = CalculateRouteDistance(graph, antPath);
+
+            // Обновление феромона на маршруте текущего муравья
+            for (int i = 0; i < num_vertices - 1; ++i) {
+                int vertex1 = antPath[i];
+                int vertex2 = antPath[i + 1];
+                pheromoneMatrix[vertex1][vertex2] += 1.0 / totalDistance;
+            }
+        }
+    }
+
+    double GraphAlgorithms::CalculateRouteDistance(s21::Graph &graph, const std::vector<int> &antPath) {
+        double totalDistance = 0.0;
+        for (int i = 0; i < antPath.size(); ++i) {
+            int vertex1 = antPath[i];
+            int vertex2 = antPath[i + 1];
+            totalDistance += graph.getDistance(vertex1, vertex2);
+        }
+        return totalDistance;
+    }
+
+    void GraphAlgorithms::UpdateBestRoute(s21::Graph &graph, const std::vector<std::vector<int>> &antPaths,
+                                          std::vector<int> &bestRoute, double &bestDistance) {
+        for (const auto  &antPath : antPaths) {
+            double  totalDistance = CalculateRouteDistance(graph, antPath);
+            if (totalDistance < bestDistance) {
+                bestDistance = totalDistance;
+                bestRoute = antPath;
             }
         }
     }

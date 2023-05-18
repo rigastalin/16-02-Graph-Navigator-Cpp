@@ -1,0 +1,4 @@
+/opt/goinfre/cflossie/CLion.app/Contents/bin/cmake/mac/bin/cmake -DCMAKE_BUILD_TYPE=Debug -DCMAKE_MAKE_PROGRAM=/opt/goinfre/cflossie/CLion.app/Contents/bin/ninja/mac/ninja -G Ninja -S /opt/goinfre/cflossie/A2_SimpleNavigator_v1.0-0 -B /opt/goinfre/cflossie/A2_SimpleNavigator_v1.0-0/cmake-build-debug
+-- Configuring done
+-- Generating done
+-- Build files have been written to: /opt/goinfre/cflossie/A2_SimpleNavigator_v1.0-0/cmake-build-debug

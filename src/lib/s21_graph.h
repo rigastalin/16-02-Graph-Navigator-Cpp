@@ -14,8 +14,8 @@
 namespace s21 {
     class Graph {
     public:
-        Graph() = default;
-        ~Graph() = default;
+        Graph() {};
+        ~Graph() {};
         explicit Graph(const std::vector<std::vector<int> >& matrix);
 
         void loadGraphFromFile(std::string filename);
@@ -33,6 +33,8 @@ namespace s21 {
         std::vector<int>& operator[](int vertex) {
             return m_matrix[vertex];
         }
+
+        double getDistance(int current_vertex, int next_vertex);
 
     private:
         std::vector<std::vector<int> > m_matrix;

@@ -1,0 +1,24 @@
+# ninja log v5
+2	1012	1684412214220115686	CMakeFiles/A2_SimpleNavigator_v1_0_0.dir/src/main.cc.o	96428fda5900e3bf
+2	1059	1684412214267516100	CMakeFiles/A2_SimpleNavigator_v1_0_0.dir/src/interface/interface.cpp.o	9e7c7810b78c7689
+3	1203	1684412214412246626	CMakeFiles/A2_SimpleNavigator_v1_0_0.dir/src/lib/s21_graph_algorithms.cpp.o	601927e6e4ce2f5c
+1	1399	1684386779970380032	CMakeFiles/A2_SimpleNavigator_v1_0_0.dir/src/lib/s21_graph.cpp.o	cb19279d27324be1
+1204	1301	1684412214514630238	A2_SimpleNavigator_v1_0_0	1beebbeaa9ab7922
+2	1286	1684412797256208284	CMakeFiles/A2_SimpleNavigator_v1_0_0.dir/src/lib/s21_graph_algorithms.cpp.o	601927e6e4ce2f5c
+1286	1359	1684412797334957246	A2_SimpleNavigator_v1_0_0	1beebbeaa9ab7922
+2	911	1684413067981717043	CMakeFiles/A2_SimpleNavigator_v1_0_0.dir/src/lib/s21_graph_algorithms.cpp.o	601927e6e4ce2f5c
+911	976	1684413068052651074	A2_SimpleNavigator_v1_0_0	1beebbeaa9ab7922
+2	868	1684413155193846819	CMakeFiles/A2_SimpleNavigator_v1_0_0.dir/src/lib/s21_graph_algorithms.cpp.o	601927e6e4ce2f5c
+868	927	1684413155256113473	A2_SimpleNavigator_v1_0_0	1beebbeaa9ab7922
+2	951	1684413231725210273	CMakeFiles/A2_SimpleNavigator_v1_0_0.dir/src/lib/s21_graph_algorithms.cpp.o	601927e6e4ce2f5c
+951	1043	1684413231821924146	A2_SimpleNavigator_v1_0_0	1beebbeaa9ab7922
+3	1257	1684413429738512787	CMakeFiles/A2_SimpleNavigator_v1_0_0.dir/src/lib/s21_graph_algorithms.cpp.o	601927e6e4ce2f5c
+1257	1324	1684413429811262331	A2_SimpleNavigator_v1_0_0	1beebbeaa9ab7922
+2	716	1684413583000608141	CMakeFiles/A2_SimpleNavigator_v1_0_0.dir/src/main.cc.o	96428fda5900e3bf
+2	821	1684413583101563566	CMakeFiles/A2_SimpleNavigator_v1_0_0.dir/src/interface/interface.cpp.o	9e7c7810b78c7689
+3	996	1684413583277615063	CMakeFiles/A2_SimpleNavigator_v1_0_0.dir/src/lib/s21_graph_algorithms.cpp.o	601927e6e4ce2f5c
+996	1087	1684413583375920023	A2_SimpleNavigator_v1_0_0	1beebbeaa9ab7922
+3	1183	1684414094007871564	CMakeFiles/A2_SimpleNavigator_v1_0_0.dir/src/lib/s21_graph_algorithms.cpp.o	601927e6e4ce2f5c
+1183	1254	1684414094083924164	A2_SimpleNavigator_v1_0_0	1beebbeaa9ab7922
+2	939	1684414141436538226	CMakeFiles/A2_SimpleNavigator_v1_0_0.dir/src/lib/s21_graph_algorithms.cpp.o	601927e6e4ce2f5c
+939	1002	1684414141502741999	A2_SimpleNavigator_v1_0_0	1beebbeaa9ab7922

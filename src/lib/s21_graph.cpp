@@ -90,5 +90,9 @@ namespace s21 {
         }
     }
 
+    double Graph::getDistance(int current_vertex, int next_vertex) {
+        return m_matrix[current_vertex][next_vertex];
+    }
+
 
 }  // namespace s21
