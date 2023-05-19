@@ -41,6 +41,7 @@ int main() {
 
 //    RIGHT SOLUTION
 //    sequence of traversing vertices: 1-8-5-4-10-6-3-7-2-11-9-1
+//                                     0-7-4-3-9-5-2-6-1-10-8-0
 //    route length: 253
 
 

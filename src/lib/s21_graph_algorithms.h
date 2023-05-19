@@ -12,6 +12,7 @@
 #include <algorithm>
 #include <limits>
 #include <cmath>
+#include <random>
 
 const int MAX = std::numeric_limits<int>::max();
 const double MAX_D = std::numeric_limits<double>::max();
@@ -20,6 +21,8 @@ const double ALPHA = 1.0;
 const double BETA = 4.0;
 const double EVAPORATION_RATE = 0.5;
 const int NUM_ITERATIONS = 1000;
+const double MIN_PROBABILITY = 1e-9;
+
 
 namespace s21 {
 

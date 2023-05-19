@@ -192,7 +192,7 @@ namespace s21 {
                                       const std::vector<std::vector<double>> &pheromoneMatrix,
                                       std::vector<std::vector<int>> &antPath) {
         int num_vertices = graph.getNumVertices();
-        int num_ants = num_vertices;
+        int num_ants = num_vertices + 1;
 
         for (int ant = 0; ant < num_ants; ++ant) {
             // Начальная вершина
@@ -206,7 +206,7 @@ namespace s21 {
             visited[current_vertex] = true;
 
             // Посещение остальных вершин
-            for (int i = 1; i < num_vertices; ++i) {
+            for (int i = 1; i <= num_vertices; ++i) {
                 std::vector<int> available_vertices;
                 for (int vertex = 0; vertex < num_vertices; ++vertex) {
                     if (!visited[vertex]) {
@@ -214,13 +214,21 @@ namespace s21 {
                     }
                 }
 
+                std::random_device randomDevice;
+                std::mt19937 gen(randomDevice());
+                std::shuffle(available_vertices.begin(), available_vertices.end(), gen);
+
                 // Выбор следующей вершины на основе вероятностей
                 double sumProbabilities = 0.0;
                 std::vector<double> probabilities(available_vertices.size());
                 for (size_t j = 0; j < available_vertices.size(); ++j) {
                     double pheromone = pheromoneMatrix[current_vertex][available_vertices[j]];
                     double distance = graph.getDistance(current_vertex, available_vertices[j]);
-                    probabilities[j] = std::pow(pheromone, ALPHA) * std::pow(1.0 / distance, BETA);
+                    if (distance != 0) {
+                        probabilities[j] = std::pow(pheromone, ALPHA) * std::pow(1.0 / distance, BETA);
+                    } else {
+                        probabilities[j] = MIN_PROBABILITY;
+                    }
                     sumProbabilities += probabilities[j];
                 }
 
@@ -240,11 +248,24 @@ namespace s21 {
                     }
                 }
 
+                // Проверка, что следующая вершина не была посещена ранее
+                if (next_vertex == -1) {
+                    double max_probability = -1.0;
+                    for (size_t j = 0; j < available_vertices.size(); ++j) {
+                        if (probabilities[j] > max_probability && available_vertices[j] != current_vertex) {
+                            max_probability = probabilities[j];
+                            next_vertex = available_vertices[j];
+                        }
+                    }
+                }
+
                 // Обновление текущей вершины
                 current_vertex = next_vertex;
                 antPath[ant][i] = current_vertex;
-                visited[current_vertex];
+                visited[current_vertex] = true;
             }
+
+            antPath[ant][num_vertices - 1] = antPath[ant][0];
         }
     }
 
