@@ -170,7 +170,7 @@ namespace s21 {
         int num_ants = num_vertices;
         std::vector<std::vector<double> > pheromoneMatrix(num_vertices, std::vector<double>(num_vertices, 1.0));
 
-        std::vector<std::vector<int> > antPath(num_ants, std::vector<int>(num_vertices));
+        std::vector<std::vector<int> > antPath(num_ants, std::vector<int>(num_vertices + 1));
 
         std::vector<int> bestRoute;
         double bestDistance = MAX_D;
@@ -192,7 +192,7 @@ namespace s21 {
                                       const std::vector<std::vector<double>> &pheromoneMatrix,
                                       std::vector<std::vector<int>> &antPath) {
         int num_vertices = graph.getNumVertices();
-        int num_ants = num_vertices + 1;
+        int num_ants = num_vertices;
 
         for (int ant = 0; ant < num_ants; ++ant) {
             // Начальная вершина
@@ -206,7 +206,7 @@ namespace s21 {
             visited[current_vertex] = true;
 
             // Посещение остальных вершин
-            for (int i = 1; i <= num_vertices; ++i) {
+            for (int i = 1; i < num_vertices; ++i) {
                 std::vector<int> available_vertices;
                 for (int vertex = 0; vertex < num_vertices; ++vertex) {
                     if (!visited[vertex]) {
@@ -265,7 +265,7 @@ namespace s21 {
                 visited[current_vertex] = true;
             }
 
-            antPath[ant][num_vertices - 1] = antPath[ant][0];
+            antPath[ant][num_vertices] = antPath[ant][0];
         }
     }
 
