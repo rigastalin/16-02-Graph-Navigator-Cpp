@@ -18,10 +18,11 @@ const int MAX = std::numeric_limits<int>::max();
 const double MAX_D = std::numeric_limits<double>::max();
 const int NO_PARENT = -1;
 const double ALPHA = 1.0;
-const double BETA = 4.0;
+const double BETA = 1.5;
 const double EVAPORATION_RATE = 0.5;
-const int NUM_ITERATIONS = 1000;
+const int NUM_ITERATIONS = 10;
 const double MIN_PROBABILITY = 1e-9;
+const int NUM_ANTS = 111;
 
 
 namespace s21 {

@@ -3,9 +3,9 @@
 #include "lib/s21_graph_algorithms.h"
 
 int main() {
-//  Interface interface;
+  Interface interface;
 //  interface.Intro();
-//  interface.Menu();
+  interface.Menu();
 
     s21::Graph graph;
     graph.loadGraphFromFile("/opt/goinfre/cflossie/A2_SimpleNavigator_v1.0-0/src/dataset/graph1.txt");
@@ -45,15 +45,15 @@ int main() {
 //    route length: 253
 
 
-    s21::TsmResult result;
-    result = graphAlgorithms.SolveTravelingSalesmanProblem(graph);
-
-    std::cout << "Vertices: ";
-    for (int vertex : result.vertices) {
-        std::cout << vertex << " ";
-    }
-    std::cout << std::endl;
-    std::cout << "Distance: " << result.distance << std::endl;
+//    s21::TsmResult result;
+//    result = graphAlgorithms.SolveTravelingSalesmanProblem(graph);
+//
+//    std::cout << "Vertices: ";
+//    for (int vertex : result.vertices) {
+//        std::cout << vertex << " ";
+//    }
+//    std::cout << std::endl;
+//    std::cout << "Distance: " << result.distance << std::endl;
 
     return 0;
 }

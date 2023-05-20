@@ -86,6 +86,7 @@ namespace s21 {
         }
         std::reverse(path.begin(), path.end());
 
+
         std::cout << "SHORTEST PATH FROM " << vertex1 << " TO " << vertex2 << ": ";
         for (int vertex : path) {
             std::cout << vertex << " ";
@@ -167,16 +168,14 @@ namespace s21 {
     // ================>  TRAVELING SALES PROBLEM (ANT WAY)  <================
     TsmResult GraphAlgorithms::SolveTravelingSalesmanProblem(Graph &graph) {
         int num_vertices = graph.getNumVertices();
-        int num_ants = num_vertices;
         std::vector<std::vector<double> > pheromoneMatrix(num_vertices, std::vector<double>(num_vertices, 1.0));
 
-        std::vector<std::vector<int> > antPath(num_ants, std::vector<int>(num_vertices + 1));
+        std::vector<std::vector<int> > antPath(NUM_ANTS, std::vector<int>(num_vertices + 1));
 
         std::vector<int> bestRoute;
         double bestDistance = MAX_D;
         // Цикл по итерациям
         for (int iteration = 0; iteration < NUM_ITERATIONS; ++iteration) {
-            // Перемещение муравьев
             AntMovement(graph, pheromoneMatrix, antPath);
             UpdatePheromone(graph, pheromoneMatrix, antPath);
             UpdateBestRoute(graph, antPath, bestRoute, bestDistance);
@@ -192,9 +191,8 @@ namespace s21 {
                                       const std::vector<std::vector<double>> &pheromoneMatrix,
                                       std::vector<std::vector<int>> &antPath) {
         int num_vertices = graph.getNumVertices();
-        int num_ants = num_vertices;
 
-        for (int ant = 0; ant < num_ants; ++ant) {
+        for (int ant = 0; ant < NUM_ANTS; ++ant) {
             // Начальная вершина
             int current_vertex = 0;
             if (ant != 0) {
@@ -265,6 +263,7 @@ namespace s21 {
                 visited[current_vertex] = true;
             }
 
+            // Возвращаемся домой
             antPath[ant][num_vertices] = antPath[ant][0];
         }
     }

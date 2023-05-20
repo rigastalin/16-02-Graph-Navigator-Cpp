@@ -26,6 +26,7 @@ build: s21_graph.a s21_graph_algorithms.a
 
 test:
 
+
 leaks:
 	CK_FORK=no leaks --atExit -- ./test/tests
 
