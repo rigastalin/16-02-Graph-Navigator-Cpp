@@ -86,7 +86,6 @@ namespace s21 {
         }
         std::reverse(path.begin(), path.end());
 
-
         std::cout << "SHORTEST PATH FROM " << vertex1 << " TO " << vertex2 << ": ";
         for (int vertex : path) {
             std::cout << vertex << " ";
@@ -169,12 +168,10 @@ namespace s21 {
     TsmResult GraphAlgorithms::SolveTravelingSalesmanProblem(Graph &graph) {
         int num_vertices = graph.getNumVertices();
         std::vector<std::vector<double> > pheromoneMatrix(num_vertices, std::vector<double>(num_vertices, 1.0));
-
-        std::vector<std::vector<int> > antPath(NUM_ANTS, std::vector<int>(num_vertices + 1));
+        std::vector<std::vector<int> > antPath(NUM_ANTS, std::vector<int>(num_vertices + 2));
 
         std::vector<int> bestRoute;
         double bestDistance = MAX_D;
-        // Цикл по итерациям
         for (int iteration = 0; iteration < NUM_ITERATIONS; ++iteration) {
             AntMovement(graph, pheromoneMatrix, antPath);
             UpdatePheromone(graph, pheromoneMatrix, antPath);
@@ -212,10 +209,6 @@ namespace s21 {
                     }
                 }
 
-                std::random_device randomDevice;
-                std::mt19937 gen(randomDevice());
-                std::shuffle(available_vertices.begin(), available_vertices.end(), gen);
-
                 // Выбор следующей вершины на основе вероятностей
                 double sumProbabilities = 0.0;
                 std::vector<double> probabilities(available_vertices.size());
@@ -237,23 +230,15 @@ namespace s21 {
                 // Выбор следующей вершины
                 double randomValue = static_cast<double>(rand()) / RAND_MAX;
                 double cumulativeProbability = 0.0;
-                int next_vertex = -1;
+                int next_vertex = DEFAULT;
                 for (size_t j = 0; j < available_vertices.size(); ++j) {
                     cumulativeProbability += probabilities[j];
                     if (randomValue <= cumulativeProbability) {
                         next_vertex = available_vertices[j];
                         break;
                     }
-                }
-
-                // Проверка, что следующая вершина не была посещена ранее
-                if (next_vertex == -1) {
-                    double max_probability = -1.0;
-                    for (size_t j = 0; j < available_vertices.size(); ++j) {
-                        if (probabilities[j] > max_probability && available_vertices[j] != current_vertex) {
-                            max_probability = probabilities[j];
-                            next_vertex = available_vertices[j];
-                        }
+                    if (next_vertex == DEFAULT) {
+                        next_vertex = available_vertices.back();
                     }
                 }
 

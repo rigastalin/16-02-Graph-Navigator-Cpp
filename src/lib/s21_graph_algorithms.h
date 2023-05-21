@@ -14,18 +14,18 @@
 #include <cmath>
 #include <random>
 
-const int MAX = std::numeric_limits<int>::max();
-const double MAX_D = std::numeric_limits<double>::max();
-const int NO_PARENT = -1;
-const double ALPHA = 1.0;
-const double BETA = 1.5;
-const double EVAPORATION_RATE = 0.5;
-const int NUM_ITERATIONS = 10;
-const double MIN_PROBABILITY = 1e-9;
-const int NUM_ANTS = 111;
-
-
 namespace s21 {
+    const int MAX = std::numeric_limits<int>::max();
+    const double MAX_D = std::numeric_limits<double>::max();
+    const int NO_PARENT = -1;
+    const double ALPHA = 1.0;
+    const double BETA = 0.5;
+    const double EVAPORATION_RATE = 0.5;
+    const int NUM_ITERATIONS = 1000;
+    const double MIN_PROBABILITY = 1e-9;
+    const int NUM_ANTS = 111;
+    const int DEFAULT = -1;
+
 
     struct TsmResult {
         std::vector<int> vertices;
@@ -42,7 +42,6 @@ namespace s21 {
         int GetShortestPathBetweenVertices(Graph &graph, int vertex1, int vertex2);
         std::vector<std::vector<int> > GetShortestPathsBetweenAllVertices(Graph &graph);
         std::vector<std::vector<int> > GetLeastSpanningTree(Graph &graph);
-
         TsmResult SolveTravelingSalesmanProblem(Graph &graph);
 
 

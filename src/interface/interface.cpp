@@ -174,6 +174,10 @@ void Interface::printDelayed(const std::string& text, int delay) {
 void Interface::LoadFile() {
     system("clear");
     graph_.loadGraphFromFile("/opt/goinfre/cflossie/A2_SimpleNavigator_v1.0-0/src/dataset/graph1.txt");
+    int delay = 30;
+    std::string textLoading = "\nLOADING SUCCESSFULLY COMPLETE!";
+    printDelayed(textLoading, delay);
+    std::cout << std::endl;
     BackToMenu();
 }
 
@@ -278,8 +282,8 @@ void Interface::SalesmanProblem() {
     std::string text = "VERTICES: ";
     printDelayed(text, 30);
     std::cout << "";
-    for (int vertex : result.vertices) {
-        std::string vertexStr = std::to_string(vertex + 1);
+    for (int vertex = 0; vertex < result.vertices.size() - 1; vertex++) {
+        std::string vertexStr = std::to_string(result.vertices[vertex] + 1);
         printDelayed(vertexStr, 50);
         std::cout << " ";
     }

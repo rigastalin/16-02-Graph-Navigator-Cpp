@@ -22,10 +22,8 @@ namespace s21 {
         void exportGraphToDot(std::string filename) const;
 
         std::vector<int> getNeighbors(int vertex) const;
+        double getDistance(int current_vertex, int next_vertex);
         int getNumVertices() const;
-        void printGraph() const;
-
-
         std::vector<int>  getAdjacent(int current_index);
         const std::vector<int>& operator[](int vertex) const {
             return m_matrix[vertex];
@@ -34,12 +32,9 @@ namespace s21 {
             return m_matrix[vertex];
         }
 
-        double getDistance(int current_vertex, int next_vertex);
-
     private:
         std::vector<std::vector<int> > m_matrix;
         int m_dimension;
     };
-
 }  // namespace s21
 #endif  // SRC_LIB_S21_GRAPH_H_
