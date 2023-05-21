@@ -13,8 +13,7 @@ stack<T>::stack(std::initializer_list<value_type> const &items) {
   this->size_ = items.size();
 }
 
-template <class T>
-stack<T>::stack(const stack &q) : stack() {
+template <class T> stack<T>::stack(const stack &q) : stack() {
   if (q.empty()) {
     head_ = nullptr;
   } else {
@@ -32,22 +31,19 @@ stack<T>::stack(const stack &q) : stack() {
   size_ = q.size_;
 }
 
-template <class T>
-stack<T>::stack(stack &&q) {
+template <class T> stack<T>::stack(stack &&q) {
   head_ = nullptr;
   operator=(std::move(q));
 }
 
-template <class T>
-stack<T>::~stack() {
+template <class T> stack<T>::~stack() {
   while (!empty()) {
     pop();
   }
   size_ = 0;
 }
 
-template <class T>
-stack<T> &stack<T>::operator=(stack<T> &&other) {
+template <class T> stack<T> &stack<T>::operator=(stack<T> &&other) {
   if (this == &other) {
     return *this;
   } else {
@@ -57,23 +53,17 @@ stack<T> &stack<T>::operator=(stack<T> &&other) {
   }
 }
 
-template <class T>
-typename stack<T>::const_reference stack<T>::top() {
+template <class T> typename stack<T>::const_reference stack<T>::top() {
   return head_->data;
 }
 
-template <class T>
-bool stack<T>::empty() const {
-  return head_ == nullptr;
-}
+template <class T> bool stack<T>::empty() const { return head_ == nullptr; }
 
-template <class T>
-typename stack<T>::size_type stack<T>::size() {
+template <class T> typename stack<T>::size_type stack<T>::size() {
   return size_;
 }
 
-template <class T>
-void stack<T>::push(const_reference value) {
+template <class T> void stack<T>::push(const_reference value) {
   if (empty()) {
     head_ = new Node(value);
   } else {
@@ -85,8 +75,7 @@ void stack<T>::push(const_reference value) {
   size_++;
 }
 
-template <class T>
-void stack<T>::pop() {
+template <class T> void stack<T>::pop() {
   if (empty()) {
     throw std::length_error("It's empty");
   }
@@ -96,8 +85,7 @@ void stack<T>::pop() {
   size_--;
 }
 
-template <class T>
-void stack<T>::swap(stack &other) {
+template <class T> void stack<T>::swap(stack &other) {
   std::swap(head_, other.head_);
   std::swap(size_, other.size_);
 }
@@ -109,4 +97,4 @@ void stack<T>::emplace_front(Args &&...args) {
     push(value);
   }
 }
-}  // namespace s21
+} // namespace s21

@@ -7,9 +7,8 @@
 #include <utility>
 
 namespace s21 {
-template <class T>
-class queue {
- private:
+template <class T> class queue {
+private:
   struct Node {
     T data;
     Node *next;
@@ -20,7 +19,7 @@ class queue {
   Node *tail_;
   size_t size_;
 
- public:
+public:
   using value_type = T;
   using reference = value_type &;
   using const_reference = const value_type &;
@@ -52,8 +51,7 @@ class queue {
   void swap(queue &other);
 
   /*-----------------------QUEUE BONUS----------------------- */
-  template <class... Args>
-  void emplace_back(Args &&...args);
+  template <class... Args> void emplace_back(Args &&...args);
 };
-}  // namespace s21
-#endif  // SRC_S21_QUEUE_H_
+} // namespace s21
+#endif // SRC_S21_QUEUE_H_

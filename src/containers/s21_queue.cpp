@@ -13,8 +13,7 @@ queue<T>::queue(std::initializer_list<value_type> const &items) {
   this->size_ = items.size();
 }
 
-template <class T>
-queue<T>::queue(const queue &q) : queue() {
+template <class T> queue<T>::queue(const queue &q) : queue() {
   if (q.empty()) {
     head_ = nullptr;
     tail_ = nullptr;
@@ -33,32 +32,23 @@ queue<T>::queue(const queue &q) : queue() {
   size_ = q.size_;
 }
 
-template <class T>
-queue<T>::queue(queue &&q) {
+template <class T> queue<T>::queue(queue &&q) {
   head_ = nullptr;
   operator=(std::move(q));
 }
 
-template <class T>
-queue<T>::~queue() {
+template <class T> queue<T>::~queue() {
   while (!empty()) {
     pop();
   }
   size_ = 0;
 }
 
-template <class T>
-size_t queue<T>::size() {
-  return size_;
-}
+template <class T> size_t queue<T>::size() { return size_; }
 
-template <class T>
-bool queue<T>::empty() const {
-  return head_ == nullptr;
-}
+template <class T> bool queue<T>::empty() const { return head_ == nullptr; }
 
-template <class T>
-queue<T> &queue<T>::operator=(queue<T> &&other) {
+template <class T> queue<T> &queue<T>::operator=(queue<T> &&other) {
   if (this == &other) {
     return *this;
   } else {
@@ -69,8 +59,7 @@ queue<T> &queue<T>::operator=(queue<T> &&other) {
   }
 }
 
-template <class T>
-void queue<T>::push(const_reference value) {
+template <class T> void queue<T>::push(const_reference value) {
   if (empty()) {
     head_ = new Node(value);
     tail_ = head_;
@@ -82,8 +71,7 @@ void queue<T>::push(const_reference value) {
   size_++;
 }
 
-template <class T>
-void queue<T>::pop() {
+template <class T> void queue<T>::pop() {
   if (empty()) {
     throw std::length_error("It's empty");
   }
@@ -93,8 +81,7 @@ void queue<T>::pop() {
   size_--;
 }
 
-template <class T>
-void queue<T>::swap(queue &other) {
+template <class T> void queue<T>::swap(queue &other) {
   std::swap(size_, other.size_);
   std::swap(head_, other.head_);
   std::swap(tail_, other.tail_);
@@ -107,4 +94,4 @@ void queue<T>::emplace_back(Args &&...args) {
     push(value);
   }
 }
-}  // namespace s21
+} // namespace s21

@@ -6,9 +6,8 @@
 #include <utility>
 
 namespace s21 {
-template <class T>
-class stack {
- private:
+template <class T> class stack {
+private:
   struct Node {
     T data;
     Node *next;
@@ -18,7 +17,7 @@ class stack {
   Node *head_;
   size_t size_;
 
- public:
+public:
   using value_type = T;
   using reference = value_type &;
   using const_reference = const value_type &;
@@ -49,8 +48,7 @@ class stack {
   void swap(stack &other);
 
   /*-------------------------STACK BONUS-------------------------------- */
-  template <class... Args>
-  void emplace_front(Args &&...args);
+  template <class... Args> void emplace_front(Args &&...args);
 };
-}  // namespace s21
-#endif  // SRC_S21_STACK_H_
+} // namespace s21
+#endif // SRC_S21_STACK_H_

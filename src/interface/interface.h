@@ -2,11 +2,12 @@
 #define SRC_INTERFACE_H_
 
 #include <unistd.h>
+
+#include <iomanip>
 #include <iostream>
 #include <sstream>
 #include <string>
 #include <thread>
-#include <iomanip>
 
 #include "../lib/s21_graph.h"
 #include "../lib/s21_graph_algorithms.h"
@@ -22,6 +23,7 @@ class Interface {
   void BackToMenu();
 
   void printDelayed(const std::string& text, int delay);
+  bool CheckGraph();
 
   void LoadFile();
   void BreadFirstSearch();
