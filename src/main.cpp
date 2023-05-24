@@ -2,7 +2,7 @@
 
 int main() {
     Interface interface;
-	interface.Intro();
+//	interface.Intro();
     interface.Menu();
     return 0;
 }

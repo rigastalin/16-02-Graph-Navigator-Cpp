@@ -2,9 +2,13 @@
 
 Implementation of the Simple Navigator project.
 
+## How to use it
+1. Gitclone project
+2. Change the placement of the graph in the file "interface.cpp"
+3. Use Makefile with a target "make"
 
+![SimpleNavigator](misc/images/navigator_interface.gif)
 
-![SimpleNavigator](misc/images/navigator_wolf.png)
 ## Chapter I
 ## Introduction
 
@@ -176,3 +180,4 @@ You need to find the shortest path that goes through all vertices of the graph a
     7. solving the salesman problem with the output of the resulting route and its length to the console
 
 
+![SimpleNavigator](misc/images/navigator_wolf.png)

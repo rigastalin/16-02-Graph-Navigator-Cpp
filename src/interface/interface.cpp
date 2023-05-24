@@ -87,7 +87,7 @@ int Interface::ShowMenu() {
          "║                                                                ║\n"
          "║                                                                ║\n"
          "║ 0. Выход                                                       ║\n"
-         "╚═══════════════════CFLOSSIE & GCONN & TORELL════════════════════╝\n"
+         "╚═════════════DIMASAVA aka CFLOSSIE aka RIGASTALIN═══════════════╝\n"
       << std::endl;
 
   return 0;
