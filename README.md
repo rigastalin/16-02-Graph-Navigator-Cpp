@@ -175,13 +175,4 @@ You need to find the shortest path that goes through all vertices of the graph a
     6. searching for the minimal spanning tree in the graph with the output of the resulting adjacency matrix to the console
     7. solving the salesman problem with the output of the resulting route and its length to the console
 
-## Part 6. Bonus. Comparison of methods for solving the traveling salesman problem
-
-* It is necessary to choose two additional algorithms to solve the traveling salesman problem and implement them as methods of the `GraphAlgorithms` class
-* Add to the console interface the ability to perform a comparison of  speed of the three algorithms (the ant colony algorithm and two randomly selected algorithms)
-    + The study starts for a graph that was previously loaded from a file.
-    + As part of the study you need to keep track of the time it took to solve the salesman's problem `N` times in a row, by each of the algorithms. Where `N` is set from the keyboard.
-    + The results of the time measurement must be displayed in the console.
-
-*Example:* For `N = 1000` it will measure how long it will take to solve the traveling salesman problem 1000 times for the current given graph by an ant colony algorithm and two randomly chosen algorithms.
 
