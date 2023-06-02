@@ -290,7 +290,7 @@ void GraphAlgorithms::UpdatePheromone(
     // Обновление феромона на маршруте текущего муравья
     for (int i = 0; i < num_vertices - 1; ++i) {
       int vertex1 = antPath[i];
-      int vertex2 = antPath[i + 1];
+      int vertex2 = antPath[(i + 1) % antPath.size()];
       pheromoneMatrix[vertex1][vertex2] += 1.0 / totalDistance;
     }
   }
@@ -301,7 +301,7 @@ double GraphAlgorithms::CalculateRouteDistance(
   double totalDistance = 0.0;
   for (int i = 0; i < antPath.size(); ++i) {
     int vertex1 = antPath[i];
-    int vertex2 = antPath[i + 1];
+    int vertex2 = antPath[(i + 1) % antPath.size()];
     totalDistance += graph.getDistance(vertex1, vertex2);
   }
   return totalDistance;

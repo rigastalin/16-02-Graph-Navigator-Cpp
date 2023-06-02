@@ -179,7 +179,7 @@ void Interface::printDelayed(const std::string& text, int delay) {
 void Interface::LoadFile() {
   system("clear");
   graph_.loadGraphFromFile(
-      "/opt/goinfre/cflossie/A2_SimpleNavigator_v1.0-0/src/dataset/graph1.txt");
+      "/opt/goinfre/cflossie/16-02-Graph-Navigator-Cpp/src/dataset/graph1.txt");
   int delay = 30;
   std::string textLoading = "\nLOADING SUCCESSFULLY COMPLETE!";
   printDelayed(textLoading, delay);
